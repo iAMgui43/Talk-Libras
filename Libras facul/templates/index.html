@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Talk Libras</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css">
-    <link rel="stylesheet" href="static/css/animate.css">
+    <link rel="stylesheet" href="/static/css/animate.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
@@ -17,9 +17,15 @@
             background-image: url('/static/sign_images/R.png');
             background-size: cover;
             background-position: center;
-            padding: 100px 0;
+            background-repeat: no-repeat;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
             color: white;
+            position: relative;
         }
         .banner-text h2 {
             font-size: 3em;
@@ -47,28 +53,43 @@
             margin-bottom: 30px;
         }
         .creator-card img {
-            width: 100%;
-            height: 300px;
             object-fit: cover;
+            width: 100px; 
+            height: 100px; 
+            object-fit: cover; 
+            border-radius: 50%;
         }
-        .creator-card .card-body {
-            background-color: #fff;
-            text-align: center;
-        }
-        .creator-card .card-title {
-            font-size: 1.25em;
-            font-weight: 500;
-        }
-        .creator-card .card-text {
-            color: #6c757d;
-        }
+
         /* Estilo para as seções de tradução e ensino */
         .action-section {
-            margin-top: 40px;
+            position: absolute;
+            top: 5%; /* Ajuste a distância do topo para ficar um pouco acima do translation_section */
+            right: 5%; /* Alinhado à direita da tela */
+            margin-top: 40px; /* Ajuste o valor de margin-top se necessário */
             text-align: center;
+            width: 100%;
+            max-width: 600px; /* Pode ajustar conforme necessário */
         }
-        #translation_section, #teach_section {
+        #teach_section {
             display: none;
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            margin: 20px;
+            position: absolute;
+            top: 10%; /* Distância do topo */
+            right: 5%; /* Distância da direita */
+        }
+
+        #translation_section {
+            display: none;
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            margin: 20px;
+            position: absolute;
+            top: 10%; /* Distância do topo */
+            right: 5%; /* Distância da direita */
         }
     </style>
 </head>
@@ -76,15 +97,14 @@
 <body>
 <!-- Navbar -->
 <nav class="navbar navbar-expand-lg">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-        <span class="fas fa-bars"></span>
-    </button>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <span class="fas fa-bars"></span> </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a class="nav-link" href="#" data-scroll-nav="0">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="#creators">Criadores</a></li>
-        </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item"> <a class="nav-link" href="" data-scroll-nav="0">Home</a> </li>
+        <li class="nav-item"> <a class="nav-link" href="#" data-scroll-nav="1">Criadores</a> </li>
+      </ul>
     </div>
+  </div>
 </nav>
 <!-- Fim Navbar -->
 
@@ -121,36 +141,39 @@
             <!-- Criador 1 -->
             <div class="col-md-4 creator-card">
                 <div class="card">
-                    <img src="{{ url_for('static', filename='sign_images/creator1.jpg') }}" class="card-img-top" alt="Criador 1">
-                    <div class="card-body">
-                        <h5 class="card-title">Criador 1</h5>
-                        <p class="card-text">Descrição sobre o criador 1.</p>
-                    </div>
+                    <img src="{{ url_for('static', filename='sign_images/creator1.jpg') }}" class="card-img-top" alt="Foto de Caio Eduardo" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%";>
                 </div>
             </div>
             <!-- Criador 2 -->
             <div class="col-md-4 creator-card">
                 <div class="card">
-                    <img src="{{ url_for('static', filename='sign_images/creator2.jpg') }}" class="card-img-top" alt="Criador 2">
-                    <div class="card-body">
-                        <h5 class="card-title">Criador 2</h5>
-                        <p class="card-text">Descrição sobre o criador 2.</p>
-                    </div>
+                    <img src="{{ url_for('static', filename='sign_images/creator2.jpg') }}" class="card-img-top" alt="Foto de Caio Eduardo" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%";>
                 </div>
             </div>
             <!-- Criador 3 -->
             <div class="col-md-4 creator-card">
                 <div class="card">
-                    <img src="{{ url_for('static', filename='sign_images/creator3.jpg') }}" class="card-img-top" alt="Criador 3">
-                    <div class="card-body">
-                        <h5 class="card-title">Criador 3</h5>
-                        <p class="card-text">Descrição sobre o criador 3.</p>
-                    </div>
+                    <img src="{{ url_for('static', filename='sign_images/creator3.jpg') }}" class="card-img-top" alt="Foto de Caio Eduardo" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%">
+                </div>
+            </div>
+            <!-- Criador 4 -->
+            <div class="col-md-4 creator-card">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='sign_images/creator4.jpg') }}" class="card-img-top" alt="Foto de Criador 4" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%">
+
+                </div>
+            </div>
+            <!-- Criador 5 -->
+            <div class="col-md-4 creator-card">
+                <div class="card">
+                    <img src="{{ url_for('static', filename='sign_images/creator5.jpg') }}" class="card-img-top" alt="Foto de Criador 5" style="width: 100px; height: 100px; object-fit: cover; border-radius: 50%">
+
                 </div>
             </div>
         </div>
     </div>
 </section>
+
 
 <!-- Área de Vídeo para Tradução -->
 <div class="container text-center mt-4" id="translation_section">
